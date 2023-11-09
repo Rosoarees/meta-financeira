@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Meta Financeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            text-align: left;
+            width: 50%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        label, p {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Meta Financeira</h1>
+        <label for="meta_financeira">Qual é a sua meta financeira R$</label>
+        <input type="text" id="meta_financeira">
+        <label for "economia_mensal">Quanto você pode economizar mensalmente R$</label>
+        <input type="text" id="economia_mensal">
+        <label>Escolha a finalidade da sua meta:</label>
+        <input type="radio" id="Aposentadoria" name="finalidade" value="Aposentadoria" checked> Aposentadoria
+        <input type="radio" id="Compra do Carro" name="finalidade" value="Compra do Carro"> Compra do Carro
+        <input type="radio" id="Compra da Casa" name="finalidade" value="Compra da Casa"> Compra da Casa
+        <input type="radio" id="Liberdade Financeira" name="finalidade" value="Liberdade Financeira"> Liberdade Financeira
+        <input type="radio" id="Viagem" name="finalidade" value="Viagem"> Viagem 
+        <br>
+        <h1></h1>
+        <h1></h1>
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="novaSimulacao()">Nova Simulação</button>
+        <p id="resultado"></p>
+    </div>
+    <div class="footer">
+        Projeto Desenvolvido para o Programa Match!!
+    </div>
+
+    <script>
+        function calcular() {
+            const meta_financeira = parseFloat(document.getElementById("meta_financeira").value);
+            const economia_mensal = parseFloat(document.getElementById("economia_mensal").value);
+            const radios = document.getElementsByName("finalidade");
+            let finalidade = "";
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    finalidade = radios[i].value;
+                    break;
+                }
+            }
+
+            const anos_necessarios = Math.floor(meta_financeira / (economia_mensal * 12));
+            const meses_adicionais = Math.floor((meta_financeira % (economia_mensal * 12)) / economia_mensal);
+
+            const resultado = `
+                Resultado da Simulação:
+                Sua meta financeira é de R$ ${meta_financeira.toFixed(2)}.
+                Você vai economizar mensalmente: R$ ${economia_mensal.toFixed(2)}.
+                Economizando mensalmente R$ ${economia_mensal.toFixed(2)}, você vai conseguir o seu objetivo em:
+                Anos: ${anos_necessarios}
+                Meses: ${meses_adicionais}
+                Você vai alcançar a sua meta de ${finalidade} mantendo essa disciplina financeira mensalmente.
+                Continue economizando e Boa Sorte na sua jornada financeira!
+            `;
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+
+        function novaSimulacao() {
+            document.getElementById("meta_financeira").value = "";
+            document.getElementById("economia_mensal").value = "";
+            document.getElementById("resultado").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
