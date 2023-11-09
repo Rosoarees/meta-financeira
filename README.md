@@ -1,1 +1,1 @@
-https://github.com/Rosoarees/meta-financeira.git
+ https://rosoarees.github.io/meta-financeira
