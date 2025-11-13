@@ -2,125 +2,145 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Meta Financeira</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            box-sizing: border-box;
-            text-align: left;
-            width: 50%;
-        }
-        h1 {
-            font-size: 24px;
-            margin-top: 0;
-        }
-        label, p {
-            display: block;
-            margin-top: 10px;
-        }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            width: 50%;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Meta Financeira - Alcance Seus Sonhos!</title>
+    <!-- Favicon para a aba do navegador -->
+    <link rel="icon" href="favicon.png" type="image/png"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/sytle.css"> <!-- Correção: o nome do arquivo CSS estava 'sytle.css' -->
 </head>
 <body>
-    <div class="container">
-        <h1>Calculadora de Meta Financeira</h1>
-        <label for="meta_financeira">Qual é a sua meta financeira R$</label>
-        <input type="text" id="meta_financeira">
-        <label for "economia_mensal">Quanto você pode economizar mensalmente R$</label>
-        <input type="text" id="economia_mensal">
-        <label>Escolha a finalidade da sua meta:</label>
-        <input type="radio" id="Aposentadoria" name="finalidade" value="Aposentadoria" checked> Aposentadoria
-        <input type="radio" id="Compra do Carro" name="finalidade" value="Compra do Carro"> Compra do Carro
-        <input type="radio" id="Compra da Casa" name="finalidade" value="Compra da Casa"> Compra da Casa
-        <input type="radio" id="Liberdade Financeira" name="finalidade" value="Liberdade Financeira"> Liberdade Financeira
-        <input type="radio" id="Viagem" name="finalidade" value="Viagem"> Viagem 
-        <br>
-        <h1></h1>
-        <h1></h1>
-        <button onclick="calcular()">Calcular</button>
-        <button onclick="novaSimulacao()">Nova Simulação</button>
-        <p id="resultado"></p>
-    </div>
-    <div class="footer">
-        Projeto Desenvolvido para o Programa Match!!
-    </div>
+    <!-- HEADER com Hero Section -->
+    <header class="hero-header">
+        <div class="hero-content">
+            <h1>Sua Jornada Financeira Começa Aqui!</h1>
+            <p class="subtitle">Transforme seus sonhos em metas alcançáveis com nossa calculadora inteligente.</p>
+            <a href="#calculator-section" class="btn-primary scroll-to-calc">
+                <i class="fas fa-arrow-down"></i> Começar Agora!
+            </a>
+        </div>
+    </header>
 
-    <script>
-        function calcular() {
-            const meta_financeira = parseFloat(document.getElementById("meta_financeira").value);
-            const economia_mensal = parseFloat(document.getElementById("economia_mensal").value);
-            const radios = document.getElementsByName("finalidade");
-            let finalidade = "";
+    <main>
+        <!-- Seção da Calculadora - Agora com ID semântico -->
+        <section id="calculator-section" class="calculator-container">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> Simule Seu Futuro Financeiro</h2>
+            <p class="section-description">Insira seus dados e descubra em quanto tempo você pode realizar seus objetivos.</p>
+            
+            <div class="input-group">
+                <label for="meta_financeira">Qual é a sua meta financeira? (R$)</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <input type="text" id="meta_financeira" placeholder="Ex: 50.000,00" inputmode="numeric">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="economia_mensal">Quanto você pode economizar mensalmente? (R$)</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-coins"></i>
+                    <input type="text" id="economia_mensal" placeholder="Ex: 1.000,00" inputmode="numeric">
+                </div>
+            </div>
+            
+            <fieldset class="radio-group">
+                <legend class="radio-title">Escolha a finalidade da sua meta:</legend>
+                <div class="radio-options">
+                    <label class="radio-option" tabindex="0"> <!-- Adicionado tabindex para acessibilidade -->
+                        <input type="radio" name="finalidade" value="Aposentadoria" checked> 
+                        <i class="fas fa-umbrella-beach"></i> Aposentadoria
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Compra do Carro"> 
+                        <i class="fas fa-car"></i> Compra do Carro
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Compra da Casa"> 
+                        <i class="fas fa-home"></i> Compra da Casa
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Liberdade Financeira"> 
+                        <i class="fas fa-piggy-bank"></i> Liberdade Financeira
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Viagem"> 
+                        <i class="fas fa-plane"></i> Viagem
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Estudo"> 
+                        <i class="fas fa-graduation-cap"></i> Estudo
+                    </label>
+                    <label class="radio-option" tabindex="0">
+                        <input type="radio" name="finalidade" value="Empreendimento"> 
+                        <i class="fas fa-lightbulb"></i> Empreendimento
+                    </label>
+                </div>
+            </fieldset>
+            
+            <div class="buttons">
+                <button class="btn btn-calculate" onclick="calcular()">
+                    <i class="fas fa-chart-line"></i> Calcular
+                </button>
+                <button class="btn btn-reset" onclick="novaSimulacao()">
+                    <i class="fas fa-redo"></i> Nova Simulação
+                </button>
+            </div>
+            
+            <div class="result-container" id="resultado">
+                <h3 class="result-title"><i class="fas fa-chart-pie"></i> Resultado da Sua Jornada</h3>
+                <div class="result-content" id="result-content">
+                    <!-- Resultado será inserido aqui pelo JavaScript -->
+                </div>
+            </div>
+        </section>
 
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    finalidade = radios[i].value;
-                    break;
-                }
-            }
+        <!-- Seção de Benefícios/Features -->
+        <section class="features-section">
+            <h2 class="section-title">Por Que Nos Escolher?</h2>
+            <p class="section-description">Acreditamos que planejamento financeiro deve ser simples e motivador.</p>
+            <div class="features-grid">
+                <article class="feature-card"> <!-- Usando article para cada feature -->
+                    <i class="fas fa-bullseye icon-feature"></i>
+                    <h3>Metas Claras</h3>
+                    <p>Defina objetivos financeiros específicos e mensuráveis que realmente importam para você.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-chart-line icon-feature"></i>
+                    <h3>Acompanhe seu Progresso</h3>
+                    <p>Visualize sua evolução e mantenha-se motivado a cada passo da sua jornada.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-gem icon-feature"></i>
+                    <h3>Realize Seus Sonhos</h3>
+                    <p>Transforme planos em realidade com um planejamento financeiro descomplicado e eficaz.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-lightbulb icon-feature"></i>
+                    <h3>Dicas Inteligentes</h3>
+                    <p>Receba insights e sugestões para otimizar suas economias e acelerar seus resultados.</p>
+                </article>
+            </div>
+        </section>
 
-            const anos_necessarios = Math.floor(meta_financeira / (economia_mensal * 12));
-            const meses_adicionais = Math.floor((meta_financeira % (economia_mensal * 12)) / economia_mensal);
+        <!-- Seção de CTA (Call to Action) -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Pronto para Começar?</h2>
+                <p>Não adie mais seus sonhos. Dê o primeiro passo rumo à sua liberdade financeira agora mesmo!</p>
+                <a href="#calculator-section" class="btn-primary btn-large scroll-to-calc">
+                    <i class="fas fa-rocket"></i> Calcular Minha Meta!
+                </a>
+            </div>
+        </section>
+    </main>
 
-            const resultado = `
-                Resultado da Simulação:
-                Sua meta financeira é de R$ ${meta_financeira.toFixed(2)}.
-                Você vai economizar mensalmente: R$ ${economia_mensal.toFixed(2)}.
-                Economizando mensalmente R$ ${economia_mensal.toFixed(2)}, você vai conseguir o seu objetivo em:
-                Anos: ${anos_necessarios}
-                Meses: ${meses_adicionais}
-                Você vai alcançar a sua meta de ${finalidade} mantendo essa disciplina financeira mensalmente.
-                Continue economizando e Boa Sorte na sua jornada financeira!
-            `;
+    <footer class="main-footer">
+        <p>&copy; 2023 Calculadora de Meta Financeira.</p>
+        <p>Desenvolvida por Ronaldo Soares Pinto como parte do Programa Match!</p>
+    </footer>
 
-            document.getElementById("resultado").innerHTML = resultado;
-        }
-
-        function novaSimulacao() {
-            document.getElementById("meta_financeira").value = "";
-            document.getElementById("economia_mensal").value = "";
-            document.getElementById("resultado").innerHTML = "";
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
